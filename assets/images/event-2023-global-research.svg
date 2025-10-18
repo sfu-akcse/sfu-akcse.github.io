@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Global Research Exchange Illustration</title>
+  <desc id="desc">Stylized illustration of researchers collaborating around a shared workspace.</desc>
+  <rect width="800" height="520" fill="#ffffff" rx="36" />
+  <g fill="#143642" opacity="0.85">
+    <path d="M140 220h520v60H140z" />
+    <path d="M220 320h360v120H220z" />
+  </g>
+  <g fill="#9a1f40" opacity="0.9">
+    <circle cx="260" cy="200" r="60" />
+    <circle cx="400" cy="180" r="80" />
+    <circle cx="540" cy="200" r="60" />
+  </g>
+  <g fill="#f5d547" opacity="0.9">
+    <rect x="240" y="340" width="110" height="70" rx="16" />
+    <rect x="450" y="340" width="110" height="70" rx="16" />
+    <path d="M360 270h80v80h-80z" rx="18" />
+  </g>
+</svg>
