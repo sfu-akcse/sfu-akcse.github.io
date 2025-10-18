@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Innovation Forum Illustration</title>
+  <desc id="desc">Stylized illustration of students collaborating around science prototypes.</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#143642" />
+      <stop offset="100%" stop-color="#9a1f40" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#grad)" rx="36" />
+  <g fill="#f5d547" opacity="0.85">
+    <circle cx="180" cy="190" r="70" />
+    <circle cx="380" cy="280" r="90" />
+    <circle cx="590" cy="180" r="60" />
+    <path d="M140 390h520v36H140z" opacity="0.65" />
+  </g>
+  <g fill="#ffffff" opacity="0.8">
+    <rect x="210" y="180" width="120" height="150" rx="18" />
+    <rect x="470" y="150" width="110" height="180" rx="18" />
+    <path d="M320 320l120-150 48 36-120 150z" />
+  </g>
+</svg>
