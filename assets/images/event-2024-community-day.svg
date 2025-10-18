@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Community Science Day Illustration</title>
+  <desc id="desc">Abstract illustration of volunteers running science activities for youth.</desc>
+  <rect width="800" height="520" fill="#f4f4f6" rx="36" />
+  <g fill="#9a1f40" opacity="0.85">
+    <circle cx="220" cy="170" r="80" />
+    <circle cx="620" cy="200" r="70" />
+    <circle cx="420" cy="340" r="120" />
+  </g>
+  <g fill="#143642" opacity="0.85">
+    <rect x="160" y="320" width="160" height="120" rx="24" />
+    <rect x="520" y="320" width="150" height="120" rx="24" />
+  </g>
+  <g fill="#f5d547" opacity="0.9">
+    <path d="M180 210l70-70 70 70-70 70z" />
+    <path d="M480 160l60-60 60 60-60 60z" />
+    <path d="M360 380h80v80h-80z" rx="18" />
+  </g>
+</svg>
