@@ -34,6 +34,14 @@ export const translations = {
       heading: 'Executive Team',
       body: 'Our executive members bring together expertise across engineering, computing science, life sciences, and business to guide SFU AKCSE.',
       placeholderAlt: (name) => `Illustrated avatar for ${name}`,
+      controls: {
+        label: 'Executive team profiles carousel',
+        selectionLabel: 'Select an executive to view their profile',
+        hint: 'Tap a name or use the arrows to explore each leader.',
+        position: (current, total) => `Profile ${current} of ${total}`,
+        previous: 'Show previous executive',
+        next: 'Show next executive',
+      },
     },
     events: {
       heading: 'Events Timeline',
@@ -87,7 +95,8 @@ export const translations = {
       cta: 'View project website',
     },
     footer: {
-      text: '© 2024 SFU Association of Korean-Canadian Scientists and Engineers',
+      legal: '© 2024 SFU Association of Korean-Canadian Scientists and Engineers',
+      tagline: 'Connecting Korean-Canadian innovators through community and mentorship.',
       backToTop: 'Back to top',
     },
   },
@@ -125,6 +134,14 @@ export const translations = {
       heading: '임원진 소개',
       body: '임원진은 공학, 컴퓨터 과학, 생명 과학, 비즈니스 등 다양한 전공의 전문성을 바탕으로 협회를 이끌고 있습니다.',
       placeholderAlt: (name) => `${name} 임원 일러스트 아바타`,
+      controls: {
+        label: '임원진 프로필 슬라이드',
+        selectionLabel: '확인할 임원 프로필 선택',
+        hint: '이름을 누르거나 화살표로 각 임원을 살펴보세요.',
+        position: (current, total) => `프로필 ${current} / ${total}`,
+        previous: '이전 임원 보기',
+        next: '다음 임원 보기',
+      },
     },
     events: {
       heading: '연도별 행사',
@@ -178,7 +195,8 @@ export const translations = {
       cta: '프로젝트 사이트 방문',
     },
     footer: {
-      text: '© 2024 SFU 한인 과학기술자 협회',
+      legal: '© 2024 SFU 한인 과학기술자 협회',
+      tagline: '커뮤니티와 멘토십으로 한인-캐나다 혁신가를 연결합니다.',
       backToTop: '맨 위로',
     },
   },
