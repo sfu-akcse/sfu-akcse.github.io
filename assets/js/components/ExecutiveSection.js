@@ -42,10 +42,19 @@ export function ExecutiveSection({ copy, members, language }) {
     const cardEl = cardRefs.current[nextIndex];
 
     if (viewportEl && cardEl) {
-      cardEl.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-      if (typeof cardEl.focus === 'function') {
-        cardEl.focus();
-      }
+      const viewportRect = viewportEl.getBoundingClientRect();
+      const cardRect = cardEl.getBoundingClientRect();
+      const currentScroll = viewportEl.scrollLeft;
+      const cardOffset = cardRect.left - viewportRect.left;
+      const targetScroll =
+        currentScroll + cardOffset - (viewportRect.width - cardRect.width) / 2;
+      const maxScroll = viewportEl.scrollWidth - viewportEl.clientWidth;
+      const clampedScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+      viewportEl.scrollTo({
+        left: clampedScroll,
+        behavior: 'smooth',
+      });
     }
 
     setActiveIndex(nextIndex);
@@ -69,8 +78,7 @@ export function ExecutiveSection({ copy, members, language }) {
       return;
     }
 
-    const viewportRect = viewportEl.getBoundingClientRect();
-    const viewportCenter = viewportRect.left + viewportRect.width / 2;
+    const scrollCenter = viewportEl.scrollLeft + viewportEl.clientWidth / 2;
     let closestIndex = activeIndex;
     let smallestDistance = Number.POSITIVE_INFINITY;
 
@@ -79,9 +87,8 @@ export function ExecutiveSection({ copy, members, language }) {
         return;
       }
 
-      const cardRect = cardEl.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const distance = Math.abs(cardCenter - viewportCenter);
+      const cardCenter = cardEl.offsetLeft + cardEl.offsetWidth / 2;
+      const distance = Math.abs(cardCenter - scrollCenter);
 
       if (distance < smallestDistance) {
         smallestDistance = distance;
