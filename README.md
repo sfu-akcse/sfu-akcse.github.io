@@ -4,15 +4,16 @@ This repository hosts the interactive React-powered website for the SFU Associat
 
 ## Structure
 
-- `index.html` – Loads the React application with CDN-hosted React, ReactDOM, and Babel.
+- `index.html` – Loads the React application with CDN-hosted React, ReactDOM, and Babel, then executes the compiled module files in order.
 - `assets/css/style.css` – Global styles, layout primitives, and responsive design rules for the React components.
-- `assets/js/` – Modularized React application source:
-  - `main.js` – Entry point that mounts the React app.
-  - `App.js` – Top-level composition of the hero, sections, and footer.
-  - `components/` – Section-level React components.
+- `assets/js/` – Modularized React application source registered on the global `window.AKCSE` namespace for browser execution:
+  - `namespace.js` – Initializes the shared namespace used by every module.
+  - `i18n/` – Translation dictionaries for English and Korean.
   - `data/` – Structured content used by the UI.
   - `hooks/` – Custom React hooks (e.g., language persistence).
-  - `i18n/` – Translation dictionaries for English and Korean.
+  - `components/` – Section-level React components.
+  - `App.js` – Top-level composition of the hero, sections, and footer.
+  - `main.js` – Entry point that mounts the React app.
 - `assets/images/` – SVG illustrations used for event cards and executive placeholders.
 
 ## Local preview

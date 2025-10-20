@@ -1,7 +1,13 @@
-import { App } from './App.js';
+(function bootstrap(global) {
+  const { React, ReactDOM } = global;
+  const App = global.AKCSE && global.AKCSE.App;
+  const rootElement = document.getElementById('root');
 
-const React = window.React;
-const ReactDOM = window.ReactDOM;
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
-root.render(<App />);
+  if (!React || !ReactDOM || !App || !rootElement) {
+    console.error('AKCSE site failed to initialize.');
+    return;
+  }
+
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<App />);
+})(window);

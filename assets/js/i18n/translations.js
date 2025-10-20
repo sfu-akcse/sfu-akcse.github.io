@@ -1,5 +1,9 @@
-export const translations = {
-  en: {
+(function initializeTranslations(global) {
+  const AKCSE = (global.AKCSE = global.AKCSE || {});
+  const namespace = (AKCSE.i18n = AKCSE.i18n || {});
+
+  namespace.translations = {
+    en: {
     hero: {
       title: 'SFU Association of Korean-Canadian Scientists and Engineers',
       subtitle:
@@ -182,4 +186,5 @@ export const translations = {
       backToTop: '맨 위로',
     },
   },
-};
+  };
+})(window);
