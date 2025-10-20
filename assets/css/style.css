@@ -75,14 +75,14 @@ img {
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   flex-wrap: nowrap;
 }
 
 .site-header__brand {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.65rem;
   min-width: 0;
   flex: 1 1 auto;
@@ -132,7 +132,7 @@ img {
 .site-header__controls {
   margin-left: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: nowrap;
   gap: 0.65rem;
   flex: 0 1 420px;
@@ -657,6 +657,7 @@ main {
   .site-header__inner {
     flex-wrap: wrap;
     row-gap: 0.9rem;
+    align-items: flex-start;
   }
 
   .site-header__title {

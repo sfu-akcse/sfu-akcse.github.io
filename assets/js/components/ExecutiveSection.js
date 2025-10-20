@@ -44,14 +44,21 @@ export function ExecutiveSection({ copy, members, language }) {
         scrollTimeoutRef.current = null;
       }
 
-      const styles = window.getComputedStyle(viewportEl);
-      const paddingLeft = parseFloat(styles.paddingLeft) || 0;
-      const targetLeft = cardEl.offsetLeft - paddingLeft;
+      const behavior = immediate ? 'auto' : 'smooth';
+      const canScrollIntoView = typeof cardEl.scrollIntoView === 'function';
 
-      viewportEl.scrollTo({
-        left: targetLeft,
-        behavior: immediate ? 'auto' : 'smooth',
-      });
+      if (canScrollIntoView) {
+        cardEl.scrollIntoView({ behavior, block: 'nearest', inline: 'start' });
+      } else {
+        const styles = window.getComputedStyle(viewportEl);
+        const paddingLeft = parseFloat(styles.paddingLeft) || 0;
+        const targetLeft = cardEl.offsetLeft - paddingLeft;
+
+        viewportEl.scrollTo({
+          left: targetLeft,
+          behavior,
+        });
+      }
 
       if (immediate) {
         suppressScrollRef.current = false;
@@ -117,19 +124,19 @@ export function ExecutiveSection({ copy, members, language }) {
       return;
     }
 
-    const styles = window.getComputedStyle(viewportEl);
-    const paddingLeft = parseFloat(styles.paddingLeft) || 0;
-    const viewportLeft = viewportEl.scrollLeft;
+    const viewportRect = viewportEl.getBoundingClientRect();
+    const viewportCenter = viewportRect.left + viewportRect.width / 2;
     let closestIndex = activeIndex;
     let smallestDistance = Number.POSITIVE_INFINITY;
 
     cardRefs.current.forEach((cardEl, index) => {
-      if (!cardEl) {
+      if (!cardEl || typeof cardEl.getBoundingClientRect !== 'function') {
         return;
       }
 
-      const cardLeft = cardEl.offsetLeft - paddingLeft;
-      const distance = Math.abs(cardLeft - viewportLeft);
+      const cardRect = cardEl.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(cardCenter - viewportCenter);
 
       if (distance < smallestDistance) {
         smallestDistance = distance;
