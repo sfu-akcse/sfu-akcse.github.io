@@ -4,7 +4,7 @@
 
   namespace.translations = {
     en: {
-    hero: {
+    header: {
       title: 'SFU Association of Korean-Canadian Scientists and Engineers',
       subtitle:
         'Bridging innovation, culture, and community for the next generation of Korean-Canadian leaders.',
@@ -96,7 +96,7 @@
     },
   },
   ko: {
-    hero: {
+    header: {
       title: 'SFU 한인 과학기술자 협회',
       subtitle: '차세대 한인-캐나다 리더를 위해 혁신, 문화, 커뮤니티를 연결합니다.',
     },

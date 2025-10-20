@@ -3,7 +3,7 @@
   const { translations } = AKCSE.i18n;
   const { executiveMembers, eventYears, projectHighlights } = AKCSE.data;
   const { usePersistedLanguage } = AKCSE.hooks;
-  const { Hero, AboutSection, ExecutiveSection, EventsSection, ProjectsSection, SiteFooter } = AKCSE.components;
+  const { Header, AboutSection, ExecutiveSection, EventsSection, ProjectsSection, SiteFooter } = AKCSE.components;
 
   AKCSE.App = function App() {
     const [language, setLanguage] = usePersistedLanguage();
@@ -11,7 +11,7 @@
 
     return (
       <div className="page">
-        <Hero copy={content.hero} nav={content.nav} language={language} onLanguageChange={setLanguage} />
+        <Header copy={content.header} nav={content.nav} language={language} onLanguageChange={setLanguage} />
         <main>
           <AboutSection copy={content.about} />
           <ExecutiveSection copy={content.executive} members={executiveMembers} language={language} />
