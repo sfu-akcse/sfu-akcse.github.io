@@ -4,6 +4,8 @@ export function ExecutiveSection({ copy, members, language }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const viewportRef = useRef(null);
   const cardRefs = useRef([]);
+  const suppressScrollRef = useRef(false);
+  const scrollTimeoutRef = useRef(null);
   const getRole = (member) => (language === 'en' ? member.role : member.roleKo);
   const getBio = (member) => (language === 'en' ? member.bio : member.bioKo);
   const controls = copy.controls ?? {
@@ -30,25 +32,68 @@ export function ExecutiveSection({ copy, members, language }) {
     }
 
     const nextIndex = Math.max(0, Math.min(index, totalMembers - 1));
+    setActiveIndex(nextIndex);
+
     const viewportEl = viewportRef.current;
     const cardEl = cardRefs.current[nextIndex];
 
-    if (viewportEl && cardEl) {
-      cardEl.scrollIntoView({
-        behavior: immediate ? 'auto' : 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
-    }
+    if (viewportEl && cardEl && typeof window !== 'undefined') {
+      suppressScrollRef.current = true;
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
 
-    setActiveIndex(nextIndex);
+      const styles = window.getComputedStyle(viewportEl);
+      const paddingLeft = parseFloat(styles.paddingLeft) || 0;
+      const targetLeft = cardEl.offsetLeft - paddingLeft;
+
+      viewportEl.scrollTo({
+        left: targetLeft,
+        behavior: immediate ? 'auto' : 'smooth',
+      });
+
+      if (immediate) {
+        suppressScrollRef.current = false;
+      } else {
+        scrollTimeoutRef.current = window.setTimeout(() => {
+          suppressScrollRef.current = false;
+          scrollTimeoutRef.current = null;
+        }, 350);
+      }
+    }
   };
 
   useEffect(() => {
     if (totalMembers > 0) {
-      scrollToIndex(0, { immediate: true });
+      if (typeof window === 'undefined' || typeof window.requestAnimationFrame !== 'function') {
+        scrollToIndex(0, { immediate: true });
+        return undefined;
+      }
+
+      const frame = window.requestAnimationFrame(() => {
+        scrollToIndex(0, { immediate: true });
+      });
+
+      return () => {
+        if (typeof window !== 'undefined' && typeof window.cancelAnimationFrame === 'function') {
+          window.cancelAnimationFrame(frame);
+        }
+      };
     }
+
+    return undefined;
   }, [language, totalMembers]);
+
+  useEffect(
+    () => () => {
+      if (typeof window !== 'undefined' && scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
+    },
+    [],
+  );
 
   const handleKeyNavigation = (event) => {
     if (event.key === 'ArrowLeft') {
@@ -68,7 +113,13 @@ export function ExecutiveSection({ copy, members, language }) {
       return;
     }
 
-    const scrollCenter = viewportEl.scrollLeft + viewportEl.clientWidth / 2;
+    if (typeof window === 'undefined' || suppressScrollRef.current) {
+      return;
+    }
+
+    const styles = window.getComputedStyle(viewportEl);
+    const paddingLeft = parseFloat(styles.paddingLeft) || 0;
+    const viewportLeft = viewportEl.scrollLeft;
     let closestIndex = activeIndex;
     let smallestDistance = Number.POSITIVE_INFINITY;
 
@@ -77,8 +128,8 @@ export function ExecutiveSection({ copy, members, language }) {
         return;
       }
 
-      const cardCenter = cardEl.offsetLeft + cardEl.offsetWidth / 2;
-      const distance = Math.abs(cardCenter - scrollCenter);
+      const cardLeft = cardEl.offsetLeft - paddingLeft;
+      const distance = Math.abs(cardLeft - viewportLeft);
 
       if (distance < smallestDistance) {
         smallestDistance = distance;
@@ -126,7 +177,7 @@ export function ExecutiveSection({ copy, members, language }) {
                 ref=${(el) => {
                   cardRefs.current[index] = el;
                 }}
-                onFocus=${() => setActiveIndex(index)}
+                onFocus=${() => scrollToIndex(index, { immediate: true })}
               >
                 <img
                   className="executive-card__image"

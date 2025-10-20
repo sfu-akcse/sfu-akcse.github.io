@@ -117,18 +117,16 @@ img {
   font-size: clamp(0.82rem, 0.42vw + 0.72rem, 0.96rem);
   font-weight: 700;
   letter-spacing: 0;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.1;
+  white-space: normal;
 }
 
 .site-header__tagline {
   margin: 0;
   font-size: 0.76rem;
   color: rgba(20, 54, 66, 0.65);
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  white-space: normal;
 }
 
 .site-header__controls {
@@ -295,13 +293,14 @@ main {
   border-radius: 24px;
   background: var(--color-background);
   box-shadow: var(--shadow-soft);
-  padding: clamp(1.1rem, 1.8vw, 1.6rem);
+  --executive-gallery-padding: clamp(1.1rem, 1.8vw, 1.6rem);
+  padding: var(--executive-gallery-padding);
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(220px, clamp(240px, 22vw, 280px));
   gap: clamp(0.9rem, 1.4vw, 1.35rem);
   scroll-snap-type: x mandatory;
-  scroll-padding: clamp(1.1rem, 1.8vw, 1.6rem);
+  scroll-padding-inline: var(--executive-gallery-padding);
   scrollbar-width: none;
 }
 
@@ -315,7 +314,7 @@ main {
 }
 
 .executive-card {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
   background: #ffffff;
   border-radius: 20px;
@@ -747,7 +746,8 @@ main {
 
   .executive-gallery__viewport {
     grid-auto-columns: minmax(220px, 75%);
-    padding: 1rem;
+    --executive-gallery-padding: 1rem;
+    padding: var(--executive-gallery-padding);
   }
 
   .executive-card {
