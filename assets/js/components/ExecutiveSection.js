@@ -69,8 +69,8 @@ export function ExecutiveSection({ copy, members, language }) {
       return;
     }
 
-    const scrollLeft = viewportEl.scrollLeft;
-    const baseOffset = cardRefs.current[0]?.offsetLeft ?? 0;
+    const viewportRect = viewportEl.getBoundingClientRect();
+    const viewportCenter = viewportRect.left + viewportRect.width / 2;
     let closestIndex = activeIndex;
     let smallestDistance = Number.POSITIVE_INFINITY;
 
@@ -79,7 +79,10 @@ export function ExecutiveSection({ copy, members, language }) {
         return;
       }
 
-      const distance = Math.abs(cardEl.offsetLeft - baseOffset - scrollLeft);
+      const cardRect = cardEl.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(cardCenter - viewportCenter);
+
       if (distance < smallestDistance) {
         smallestDistance = distance;
         closestIndex = index;

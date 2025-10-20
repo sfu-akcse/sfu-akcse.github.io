@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     header: {
-      title: 'SFU Association of Korean-Canadian Scientists and Engineers',
+      title: 'SFU AKCSE',
       subtitle:
         'Bridging innovation, culture, and community for the next generation of Korean-Canadian leaders.',
     },
