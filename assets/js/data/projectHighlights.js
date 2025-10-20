@@ -1,0 +1,32 @@
+export const projectHighlights = [
+  {
+    name: 'Mentorship Bridge',
+    nameKo: '멘토십 브릿지',
+    summary: 'Pairing Korean-Canadian undergraduates with professionals across Canada and Korea for career coaching.',
+    summaryKo: '한인 학부생과 캐나다 및 한국의 전문가를 연결하여 커리어 코칭을 제공하는 프로그램.',
+    image: 'assets/images/event-2023-global-research.svg',
+    altEn: 'Mentor guiding a student through a project plan',
+    altKo: '프로젝트 계획을 설명하는 멘토와 학생',
+    link: 'https://www.linkedin.com/',
+  },
+  {
+    name: 'Innovation Sprint',
+    nameKo: '이노베이션 스프린트',
+    summary: 'Interdisciplinary project teams prototype solutions for local sustainability challenges with partner labs.',
+    summaryKo: '파트너 연구실과 함께 지역 지속 가능성 과제를 해결하는 시제품을 제작하는 융합 프로젝트.',
+    image: 'assets/images/event-2024-innovation-forum.svg',
+    altEn: 'Students collaborating on laptops in a workshop',
+    altKo: '워크숍에서 노트북으로 협업하는 학생들',
+    link: 'https://www.notion.so/',
+  },
+  {
+    name: 'Community STEM Expo',
+    nameKo: '커뮤니티 STEM 엑스포',
+    summary: 'Public showcase connecting families with bilingual demos, research posters, and youth competitions.',
+    summaryKo: '이중언어 시연과 연구 포스터, 청소년 경진대회를 선보이는 커뮤니티 전시 행사.',
+    image: 'assets/images/event-2024-community-day.svg',
+    altEn: 'Families exploring interactive science exhibits',
+    altKo: '인터랙티브 과학 전시를 체험하는 가족들',
+    link: 'https://www.eventbrite.ca/',
+  },
+];
