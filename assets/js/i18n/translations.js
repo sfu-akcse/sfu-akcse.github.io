@@ -87,7 +87,8 @@ export const translations = {
       cta: 'View project website',
     },
     footer: {
-      text: '© 2024 SFU Association of Korean-Canadian Scientists and Engineers',
+      legal: '© 2024 SFU Association of Korean-Canadian Scientists and Engineers',
+      tagline: 'Connecting Korean-Canadian innovators through community and mentorship.',
       backToTop: 'Back to top',
     },
   },
@@ -178,7 +179,8 @@ export const translations = {
       cta: '프로젝트 사이트 방문',
     },
     footer: {
-      text: '© 2024 SFU 한인 과학기술자 협회',
+      legal: '© 2024 SFU 한인 과학기술자 협회',
+      tagline: '커뮤니티와 멘토십으로 한인-캐나다 혁신가를 연결합니다.',
       backToTop: '맨 위로',
     },
   },
