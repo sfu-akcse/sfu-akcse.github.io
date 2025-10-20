@@ -159,6 +159,7 @@ img {
   font-size: 0.88rem;
   color: var(--color-secondary);
   border: 1px solid transparent;
+  white-space: nowrap;
   transition: color var(--transition-base), border-color var(--transition-base), background var(--transition-base);
 }
 

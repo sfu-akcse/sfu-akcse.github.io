@@ -24,15 +24,7 @@ export function ExecutiveSection({ copy, members, language }) {
     cardRefs.current.length = totalMembers;
   }, [totalMembers]);
 
-  useEffect(() => {
-    const viewportEl = viewportRef.current;
-    if (viewportEl) {
-      viewportEl.scrollLeft = 0;
-    }
-    setActiveIndex(0);
-  }, [language, totalMembers]);
-
-  const scrollToIndex = (index) => {
+  const scrollToIndex = (index, { immediate = false } = {}) => {
     if (!hasMembers) {
       return;
     }
@@ -42,23 +34,21 @@ export function ExecutiveSection({ copy, members, language }) {
     const cardEl = cardRefs.current[nextIndex];
 
     if (viewportEl && cardEl) {
-      const viewportRect = viewportEl.getBoundingClientRect();
-      const cardRect = cardEl.getBoundingClientRect();
-      const currentScroll = viewportEl.scrollLeft;
-      const cardOffset = cardRect.left - viewportRect.left;
-      const targetScroll =
-        currentScroll + cardOffset - (viewportRect.width - cardRect.width) / 2;
-      const maxScroll = viewportEl.scrollWidth - viewportEl.clientWidth;
-      const clampedScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-      viewportEl.scrollTo({
-        left: clampedScroll,
-        behavior: 'smooth',
+      cardEl.scrollIntoView({
+        behavior: immediate ? 'auto' : 'smooth',
+        block: 'nearest',
+        inline: 'center',
       });
     }
 
     setActiveIndex(nextIndex);
   };
+
+  useEffect(() => {
+    if (totalMembers > 0) {
+      scrollToIndex(0, { immediate: true });
+    }
+  }, [language, totalMembers]);
 
   const handleKeyNavigation = (event) => {
     if (event.key === 'ArrowLeft') {

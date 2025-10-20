@@ -2,7 +2,7 @@ export const translations = {
   en: {
     header: {
       title: 'SFU AKCSE',
-      subtitle: 'Connecting Korean-Canadian innovators through STEM and culture.',
+      subtitle: 'Connecting Korean-Canadian innovators.',
     },
     nav: {
       about: 'About Us',
@@ -101,7 +101,7 @@ export const translations = {
   ko: {
     header: {
       title: 'SFU 한인 과학기술자 협회',
-      subtitle: 'STEM과 문화를 잇는 한인-캐나다 혁신가 커뮤니티.',
+      subtitle: '한인-캐나다 혁신가 커뮤니티.',
     },
     nav: {
       about: '소개',
