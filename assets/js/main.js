@@ -1,13 +1,12 @@
-(function bootstrap(global) {
-  const { React, ReactDOM } = global;
-  const App = global.AKCSE && global.AKCSE.App;
-  const rootElement = document.getElementById('root');
+import { React } from './lib/react.js';
+import { createRoot } from 'https://esm.sh/react-dom@18/client';
+import { App } from './App.js';
 
-  if (!React || !ReactDOM || !App || !rootElement) {
-    console.error('AKCSE site failed to initialize.');
-    return;
-  }
+const rootElement = document.getElementById('root');
 
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(<App />);
-})(window);
+if (!rootElement) {
+  console.error('AKCSE site failed to find the root element.');
+} else {
+  const root = createRoot(rootElement);
+  root.render(React.createElement(App));
+}

@@ -1,17 +1,10 @@
-(function registerSiteFooter(global) {
-  const AKCSE = (global.AKCSE = global.AKCSE || {});
-  const components = (AKCSE.components = AKCSE.components || {});
+import { html } from '../lib/react.js';
 
-  components.SiteFooter = function SiteFooter({ copy }) {
-    return (
-      <footer className="footer">
-        <div className="footer__container">
-          <p>{copy.text}</p>
-          <a className="footer__to-top" href="#top">
-            {copy.backToTop}
-          </a>
-        </div>
-      </footer>
-    );
-  };
-})(window);
+export function SiteFooter({ copy }) {
+  return html`<footer className="site-footer">
+    <div className="site-footer__container">
+      <p>${copy.text}</p>
+      <a className="site-footer__back" href="#top">${copy.backToTop}</a>
+    </div>
+  </footer>`;
+}

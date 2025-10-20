@@ -1,9 +1,5 @@
-(function initializeTranslations(global) {
-  const AKCSE = (global.AKCSE = global.AKCSE || {});
-  const namespace = (AKCSE.i18n = AKCSE.i18n || {});
-
-  namespace.translations = {
-    en: {
+export const translations = {
+  en: {
     header: {
       title: 'SFU Association of Korean-Canadian Scientists and Engineers',
       subtitle:
@@ -186,5 +182,4 @@
       backToTop: '맨 위로',
     },
   },
-  };
-})(window);
+};
