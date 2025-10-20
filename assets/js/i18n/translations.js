@@ -35,11 +35,11 @@ export const translations = {
       body: 'Our executive members bring together expertise across engineering, computing science, life sciences, and business to guide SFU AKCSE.',
       placeholderAlt: (name) => `Illustrated avatar for ${name}`,
       controls: {
-        label: 'Executive team scrollable list',
-        hint: 'Use the side arrows or scroll to meet every executive.',
+        label: 'Executive team horizontal list',
+        hint: 'Use the side arrows or swipe sideways to meet every executive.',
         position: (current, total) => `Viewing profile ${current} of ${total}`,
-        previous: 'Scroll up to the previous executive',
-        next: 'Scroll down to the next executive',
+        previous: 'Scroll left to the previous executive',
+        next: 'Scroll right to the next executive',
       },
     },
     events: {
@@ -134,11 +134,11 @@ export const translations = {
       body: '임원진은 공학, 컴퓨터 과학, 생명 과학, 비즈니스 등 다양한 전공의 전문성을 바탕으로 협회를 이끌고 있습니다.',
       placeholderAlt: (name) => `${name} 임원 일러스트 아바타`,
       controls: {
-        label: '임원진 스크롤 목록',
-        hint: '양옆 화살표 또는 스크롤을 사용해 모든 임원을 살펴보세요.',
+        label: '임원진 가로 스크롤 목록',
+        hint: '양옆 화살표 또는 가로 스와이프로 모든 임원을 살펴보세요.',
         position: (current, total) => `프로필 ${current} / ${total}`,
-        previous: '이전 임원으로 스크롤',
-        next: '다음 임원으로 스크롤',
+        previous: '왼쪽으로 스크롤해 이전 임원 보기',
+        next: '오른쪽으로 스크롤해 다음 임원 보기',
       },
     },
     events: {

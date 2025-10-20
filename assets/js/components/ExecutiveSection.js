@@ -27,7 +27,7 @@ export function ExecutiveSection({ copy, members, language }) {
   useEffect(() => {
     const viewportEl = viewportRef.current;
     if (viewportEl) {
-      viewportEl.scrollTop = 0;
+      viewportEl.scrollLeft = 0;
     }
     setActiveIndex(0);
   }, [language, totalMembers]);
@@ -42,7 +42,7 @@ export function ExecutiveSection({ copy, members, language }) {
     const cardEl = cardRefs.current[nextIndex];
 
     if (viewportEl && cardEl) {
-      cardEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      cardEl.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
       if (typeof cardEl.focus === 'function') {
         cardEl.focus();
       }
@@ -52,12 +52,12 @@ export function ExecutiveSection({ copy, members, language }) {
   };
 
   const handleKeyNavigation = (event) => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    if (event.key === 'ArrowLeft') {
       event.preventDefault();
       scrollToIndex(activeIndex - 1);
     }
 
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    if (event.key === 'ArrowRight') {
       event.preventDefault();
       scrollToIndex(activeIndex + 1);
     }
@@ -69,8 +69,8 @@ export function ExecutiveSection({ copy, members, language }) {
       return;
     }
 
-    const scrollTop = viewportEl.scrollTop;
-    const baseOffset = cardRefs.current[0]?.offsetTop ?? 0;
+    const scrollLeft = viewportEl.scrollLeft;
+    const baseOffset = cardRefs.current[0]?.offsetLeft ?? 0;
     let closestIndex = activeIndex;
     let smallestDistance = Number.POSITIVE_INFINITY;
 
@@ -79,7 +79,7 @@ export function ExecutiveSection({ copy, members, language }) {
         return;
       }
 
-      const distance = Math.abs(cardEl.offsetTop - baseOffset - scrollTop);
+      const distance = Math.abs(cardEl.offsetLeft - baseOffset - scrollLeft);
       if (distance < smallestDistance) {
         smallestDistance = distance;
         closestIndex = index;
@@ -93,15 +93,15 @@ export function ExecutiveSection({ copy, members, language }) {
 
   return html`<section id="executive" className="section">
     <div className="section__container section__container--executive">
-      <div className="section__intro">
+      <div className="executive-intro">
         <h2>${copy.heading}</h2>
         <p>${copy.body}</p>
       </div>
-      <div className="executive-carousel">
-        <div className="executive-carousel__stage">
+      <div className="executive-gallery">
+        <div className="executive-gallery__stage">
           <button
             type="button"
-            className="executive-carousel__arrow executive-carousel__arrow--prev"
+            className="executive-gallery__arrow executive-gallery__arrow--prev"
             onClick=${() => scrollToIndex(activeIndex - 1)}
             disabled=${disablePrev}
             aria-label=${controls.previous}
@@ -109,7 +109,7 @@ export function ExecutiveSection({ copy, members, language }) {
             ←
           </button>
           <div
-            className="executive-carousel__viewport"
+            className="executive-gallery__viewport"
             role="list"
             aria-label=${controls.label}
             tabIndex="0"
@@ -119,7 +119,7 @@ export function ExecutiveSection({ copy, members, language }) {
           >
             ${members.map(
               (member, index) => html`<article
-                className="executive-slide"
+                className="executive-card"
                 key=${member.name}
                 role="listitem"
                 tabIndex=${index === activeIndex ? 0 : -1}
@@ -129,21 +129,21 @@ export function ExecutiveSection({ copy, members, language }) {
                 onFocus=${() => setActiveIndex(index)}
               >
                 <img
-                  className="card__image"
+                  className="executive-card__image"
                   src=${member.image}
                   alt=${copy.placeholderAlt(member.name)}
                 />
-                <div>
+                <div className="executive-card__meta">
                   <h3>${member.name}</h3>
-                  <p className="card__role">${getRole(member)}</p>
+                  <p className="executive-card__role">${getRole(member)}</p>
                 </div>
-                <p>${getBio(member)}</p>
+                <p className="executive-card__bio">${getBio(member)}</p>
               </article>`
             )}
           </div>
           <button
             type="button"
-            className="executive-carousel__arrow executive-carousel__arrow--next"
+            className="executive-gallery__arrow executive-gallery__arrow--next"
             onClick=${() => scrollToIndex(activeIndex + 1)}
             disabled=${disableNext}
             aria-label=${controls.next}
@@ -151,11 +151,11 @@ export function ExecutiveSection({ copy, members, language }) {
             →
           </button>
         </div>
-        <span className="executive-carousel__status" role="status" aria-live="polite">
+        <span className="executive-gallery__status" role="status" aria-live="polite">
           ${hasMembers ? controls.position(displayIndex, displayTotal) : ''}
         </span>
         ${controls.hint
-          ? html`<p className="executive-carousel__hint">${controls.hint}</p>`
+          ? html`<p className="executive-gallery__hint">${controls.hint}</p>`
           : null}
       </div>
     </div>
