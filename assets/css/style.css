@@ -107,14 +107,15 @@ img {
   flex-direction: column;
   gap: 0.2rem;
   min-width: 0;
-  max-width: 420px;
+  max-width: 560px;
 }
 
 .site-header__title {
   margin: 0;
-  font-size: clamp(1.1rem, 1.3vw + 0.9rem, 1.6rem);
+  font-size: clamp(1rem, 1vw + 0.85rem, 1.45rem);
   font-weight: 700;
   letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .site-header__tagline {
@@ -241,6 +242,32 @@ main {
 .grid--executive {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   margin-top: 2.5rem;
+}
+
+.section__container--executive {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.section__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.section__intro h2 {
+  margin-bottom: 0.2rem;
+}
+
+.section__intro p {
+  margin: 0;
+  color: rgba(30, 30, 36, 0.72);
+}
+
+.section__container--executive .grid--executive {
+  margin-top: 0;
 }
 
 .card {
@@ -510,6 +537,17 @@ main {
   }
 }
 
+@media (max-width: 960px) {
+  .section__container--executive {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .section__intro {
+    max-width: 520px;
+  }
+}
+
 @media (max-width: 920px) {
   .event-card {
     grid-template-columns: 1fr;
@@ -552,6 +590,10 @@ main {
     padding: 0.55rem 0;
   }
 
+  .section__container--executive {
+    gap: 2rem;
+  }
+
   .site-footer__container {
     flex-direction: column;
     align-items: flex-start;
@@ -584,6 +626,10 @@ main {
 
   .site-header__nav a {
     flex-basis: 100%;
+  }
+
+  .section__intro {
+    gap: 0.6rem;
   }
 
   .site-footer__info {

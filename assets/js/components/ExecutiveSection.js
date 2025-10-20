@@ -5,9 +5,11 @@ export function ExecutiveSection({ copy, members, language }) {
   const getBio = (member) => (language === 'en' ? member.bio : member.bioKo);
 
   return html`<section id="executive" className="section">
-    <div className="section__container">
-      <h2>${copy.heading}</h2>
-      <p>${copy.body}</p>
+    <div className="section__container section__container--executive">
+      <div className="section__intro">
+        <h2>${copy.heading}</h2>
+        <p>${copy.body}</p>
+      </div>
       <div className="grid grid--executive" role="list">
         ${members.map(
           (member) => html`<article className="card" role="listitem" key=${member.name}>
